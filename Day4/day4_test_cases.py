@@ -44,5 +44,5 @@ register_response = {
 }
 
 check_status_code(register_response["status_code"], 200)
-check_response_time(register_response["json"]["code"], 200)
+check_equal(register_response["json"]["code"], 200)
 check_field_exists(register_response["json"], "user_id")
