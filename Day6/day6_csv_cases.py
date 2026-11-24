@@ -35,6 +35,29 @@ def mock_response(case):
         }
     return response
 
+#任务3：逐条执行测试用例
+'''
+1. 调用 mock_response() 获取实际响应。
+2. 调用 Day4 中封装好的断言函数。
+3. 校验实际状态码是否等于预期状态码。
+4. 校验实际字段是否等于预期字段。
+5. 断言成功，返回 PASS。
+6. 断言失败，返回 FAIL。
+'''
+
+from Day4.day4_assert_lib import check_status_code
+from Day4.day4_assert_lib import check_field_exists
+def run_case(case):
+
+    res = mock_response(case)
+
+    try:
+        check_status_code(res['status'], case['expect_status'])
+        check_field_exists(res['field'], case['expect_field'])
+        return "PASS"
+    except AssertionError:
+        return "FAIL"
+
 
 
 
