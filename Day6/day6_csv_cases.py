@@ -129,7 +129,8 @@ def run_all_cases(cases):
 5. 成功用例的 error_msg 可以为空。
 '''
 results = run_all_cases(cases)
-with open("day6_report.csv", "w", encoding="utf-8", newline = "") as f:
+#这里csv包含中文的情况建议用utf-8-sig
+with open("day6_report.csv", "w", encoding="utf-8-sig", newline = "") as f:
     fieldnames = ["case_id", "case_name", "expect_status", "actual_status", "expect_field", "actual_field", "result", "error_msg"]
     writer = csv.DictWriter(f, fieldnames = fieldnames)
     writer.writeheader()
