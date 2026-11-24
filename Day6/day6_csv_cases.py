@@ -58,6 +58,67 @@ def run_case(case):
     except AssertionError:
         return "FAIL"
 
+#任务4：异常捕获，保证单条失败不中断
+'''
+1. 遍历所有测试用例。
+2. 每条用例执行时使用 try/except。
+3. 如果断言失败，捕获 AssertionError。
+4. 将当前用例记录为 FAIL。
+5. 继续执行下一条用例。
+6. 所有用例执行完毕后，输出测试结果汇总。
+'''
+
+def run_all_cases(cases):
+    results = []
+    pass_count = 0
+    fail_count = 0
+
+    for case in cases:
+        errors = []
+
+        res = mock_response(case)
+
+        try:
+            check_status_code(res['status'], case['expect_status'])
+        except AssertionError as e:
+            errors.append(str(e))
+
+        try:
+            check_field_exists(res['field'], case['expect_field'])
+        except AssertionError as e:
+            errors.append(str(e))
+
+
+        if not errors:
+            result = "PASS"
+            pass_count += 1
+        else:
+            result = "FAIL"
+            fail_count += 1
+
+        results.append({
+            "case_id": case['case_id'],
+            "case_name": case['name'],
+            "expect_status": case['expect_status'],
+            "actual_status": res['status'],
+            "expect_field": case['expect_field'],
+            "actual_field": res['field'],
+            "result": result,
+            "error_msg": ";".join(errors)
+        })
+
+    print("=====测试执行结果=====")
+    for i in results:
+        print(f"{i['case_id']} | {i['case_name']} | {i['result']}")
+    print("===================")
+
+    print("=====执行汇总=====")
+    print(f"总用例数：{len(cases)}")
+    print(f"通过数量：{pass_count}")
+    print(f"失败数量：{fail_count}")
+    print(f"通过率：{pass_count/len(cases) * 100:.0f}%")
+
+run_all_cases(cases)
 
 
 
