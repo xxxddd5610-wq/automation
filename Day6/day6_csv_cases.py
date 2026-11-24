@@ -118,7 +118,27 @@ def run_all_cases(cases):
     print(f"失败数量：{fail_count}")
     print(f"通过率：{pass_count/len(cases) * 100:.0f}%")
 
-run_all_cases(cases)
+    return results
+
+#任务5：生成csv测试报告
+'''
+1. 使用 csv.DictWriter() 写入。
+2. 使用 writeheader() 写入表头。
+3. 使用 writerow() 或 writerows() 写入测试结果。
+4. 失败用例需要记录具体失败原因。
+5. 成功用例的 error_msg 可以为空。
+'''
+results = run_all_cases(cases)
+with open("day6_report.csv", "w", encoding="utf-8", newline = "") as f:
+    fieldnames = ["case_id", "case_name", "expect_status", "actual_status", "expect_field", "actual_field", "result", "error_msg"]
+    writer = csv.DictWriter(f, fieldnames = fieldnames)
+    writer.writeheader()
+    for result in results:
+        writer.writerow(result)
+    print("执行情况已写入文件")
+
+
+
 
 
 
