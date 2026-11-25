@@ -100,7 +100,6 @@ def run_all(cases):
     for case in cases:
         errors = []
 
-
         try:
             check_status_code(case["actual_status"], case["expected_status"])
             status_result = "PASS"
