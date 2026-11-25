@@ -15,5 +15,16 @@ for key, value in dict.items():
     print(f"{key}: {value}次")
 
 
-
 #题 3：读可能不存在的 scores.txt（每行一个分数）求平均分，文件不存在时友好提示、不崩溃；
+total = 0
+try:
+    with open("scores.txt", "r", encoding="utf-8") as f:
+
+        num_list = f.readlines()
+        for str_num in num_list:
+            total += float(str_num)
+
+except FileNotFoundError as e:
+    print(e)
+if total != 0:
+    print(f"平均分为：{total/len(num_list):.2f}")
