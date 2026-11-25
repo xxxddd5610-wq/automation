@@ -7,6 +7,13 @@ print(f"消息：{s_list[3]}")
 
 #题 2：给定 [("login","pass"),("pay","fail"),("login","fail"),("pay","pass")]，
 # 用字典统计每个用例的 pass/fail 数；
+cases = [("login","pass"),("pay","fail"),("login","fail"),("pay","pass")]
+dict = {}
+for case in cases:
+    dict[case[1]] = dict.get(case[1], 0) + 1
+for key, value in dict.items():
+    print(f"{key}: {value}次")
+
 
 
 #题 3：读可能不存在的 scores.txt（每行一个分数）求平均分，文件不存在时友好提示、不崩溃；
