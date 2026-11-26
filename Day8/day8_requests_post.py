@@ -44,11 +44,9 @@ try:
 except AssertionError as e:
     print(e)
 
+
 try:
-    try:
-        check_equal(res_json['data']['deleted'], False)
-        print(f"字段data.deleted为{res_json['data']['deleted']}")
-    except AssertionError as e:
-        print(e)
-except Exception as e:
+    check_equal(res_json['data']['deleted'], False)
+    print(f"字段data.deleted为{res_json['data']['deleted']}")
+except (AssertionError, KeyError) as e:
     print(e)
