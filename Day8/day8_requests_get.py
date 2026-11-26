@@ -27,7 +27,7 @@ params = {
     "sign": "4b67a64b1a7e3a123dd34626d760cb97"
 }
 
-response = requests.get(url, headers=headers)
+response = requests.get(url, headers=headers, params=params, timeout=5)
 
 #状态码是否相同
 try:

@@ -27,7 +27,7 @@ data = {
     "folderId": 0
 }
 
-response = requests.post(url, headers= headers, json=data)
+response = requests.post(url, headers= headers, json=data, timeout=5)
 
 
 try:
